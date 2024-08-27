@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.webp" type="image/webp">
+    <style>
+        body {
+            margin: 0;
+            padding-top: 80px;
+            background-color: #fff;
+            color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        .header {
+            background-color: #000;
+            height: 60px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            color: white;
+            font-size: 14px;
+            box-sizing: border-box;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .header img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .header h3 {
+            margin: 0 10px;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        a {
+    text-decoration: none; 
+    color: inherit; 
+}
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: background-color 0.10s;
+        }
+        .modal {
+            background-color: #fff;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .modal-header {
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .modal-content {
+            overflow-y: auto;
+        }
+        h1 {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 24px;
+        }
+        h2, h3, h4, h5, h6 {
+            font-size: 18px;
+        }
+        button {
+            background: #212121;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #333;
+        }
+        .learn-more {
+            color: white;
+        }
+        p {
+            font-size: 16px;
+            margin: 10px 5%;
+        }
+        ul {
+            padding-left: 20px;
+            font-size: 16px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border: 3px solid black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+        .content-left, .content-right {
+            width: 100%;
+            text-align: center;
+        }
+        .content-left {
+            margin-bottom: 20px;
+        }
+        .content-right {
+            margin-top: 20px;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .dark-mode .header {
+            background-color: whitesmoke;
+            color: #000;
+        }
+        .dark-mode .modal {
+            background-color: #212121;
+            color: #e0e0e0;
+        }
+        .dark-mode button {
+            background: white;
+            color: black;
+        }
+        .header a {
+    text-decoration: none; /* Remove underline from all header links */
+    color: inherit; /* Inherit color from parent, or set to a specific color if needed */
+}
+
+/* Specific styles for no-text-decoration class */
+.header .no-text-decoration {
+    color: inherit; /* Inherit color from parent, or set to a specific color if needed */
+}
+
+.header .no-text-decoration h3 {
+    text-decoration: none; /* Remove text decoration for h3 within these links */
+    color: inherit; /* Ensure color is not blue; use 'inherit' or set a specific color */
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="MainIndex.htm">
+            <img src="logo.webp" alt="Website Logo">
+        </a>
+        <a href="#get-started"><h3>Get Started</h3></a>
+        <h3 id="contactUsBtn">Contact Us</h3>
+        <h3 id="supportBtn">Support</h3>
+        <a href="#our-services"><h3>Our Services</h3></a>
+        <h3 id="settingsBtn">Settings</h3>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/DevWebLoper.official_" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+            </a>
+            <a href="https://discord.gg/fd5a2gmYYj" target="_blank">
+                <img src="https://toppng.com/uploads/preview/discord-logo-01-discord-logo-11562849833clsolz2mbc.png" alt="Discord">
+            </a>
+        </div>
+    </div>
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">Settings</div>
+            <div class="close-modal" id="closeModal">&times;</div>
+            <div class="modal-content">
+                <h4>Display:</h4>
+                <button id="displayToggleBtn" class="learn-more">Dark</button>
+                <h4>About:</h4>
+                <p><span class="orange-text">DevWebLoper</span> specializes in crafting custom websites based on your designs and ideas. Simply share your vision, and we'll deliver a polished, professional site that reflects it. Trust us to bring your ideas to life with precision and care.</p>
+                <h4>Version:</h4>
+                <h6>Version: 0.1 (Recent)</h6>
+            </div>
+        </div>
+    </div>
+    <h1>Welcome To <span class="orange-text">DevWebLoper</span>'s Home Page</h1>
+    <h5><span class="inverted-comma">“ </span>At DevWebLoper, we create custom websites with care, ensuring every detail aligns with your vision. Your ideas deserve our personalized touch. <span class="inverted-comma">”</span></h5>
+    <h2>Free Customizable UI Components or Designs:</h2>
+    <div class="container">
+        <div class="content-left">
+            <div class="image-gallery">
+                <div class="image-item">
+                    <h7><span class="pink-text">Uiverse</span></h7>
+                    <a href="https://uiverse.io/" target="_blank">
+                        <img src="Uiverse.png" alt="Uiverse">
+                    </a>
+                    <h8><span class="pink-text">“ </span>Uiverse.io provides a variety of customizable UI elements and design components that can be used to enhance websites and apps. It features user-friendly tools for creating visually appealing interfaces.<span class="pink-text">”</span> (click the image to visit Uiverse)</h8>
+                </div>
+            </div>
+        </div>
+        <div class="content-right">
+            <div class="image-gallery">
+                <div class="image-item">
+                    <h7><span class="blue-text">Haikei</span></h7>
+                    <a href="https://haikei.app/" target="_blank">
+                        <img src="haikei.png" alt="Haikei">
+                    </a>
+                    <h8><span class="blue-text">“ </span>Haikei is a tool for generating customizable, visually appealing backgrounds and shapes for web and app designs. It offers an easy way to create unique patterns and graphics without needing advanced design skills.<span class="blue-text">”</span> (click the image to visit Haikei)</h8>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2 id="our-services">Our Services:</h2>
+    <h9>1. <span class="orange-text">Website</span> Development:</h9>
+    <ul>
+        <li>Custom Website Design and Development.</li>
+        <li>Responsive Design for All Devices.</li>
+        <li>Website Redesign and Maintenance.</li>
+    </ul>
+    <h9>2. <span class="orange-text">Web</span> Game Development:</h9>
+    <ul>
+        <li>Making 2D Web games.</li>
+        <li>Custom Web Games Creation.</li>
+        <li>Ongoing Support and Updates.</li>
+    </ul>
+    <h9>3. <span class="orange-text">Website</span> Enhancements:</h9>
+    <ul>
+        <li>Simple Menu Design.</li>
+        <li>Custom Buttons & Interactive Elements.</li>
+        <li>Sign-In & Login Pages.</li>
+    </ul>
+    <h9>4. Additional Services:</h9>
+    <ul>
+        <li>Website Updates</li>
+        <li>Performance Enhancements</li>
+        <li>Link Generation (not Domain).</li>
+    </ul>
+    <h2 id="get-started">Get Started:</h2>
+    <h5>Click <a href="Contract.htm"><span class="blue-text">Get Started</span></a> to view the requirements that must be fulfilled by the customer to begin building your website.</h5>
+    <script>
+        document.getElementById('settingsBtn').addEventListener('click', function() {
+            document.getElementById('settingsModal').style.display = 'flex';
+        });
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('settingsModal').style.display = 'none';
+        });
+        const displayToggleBtn = document.getElementById('displayToggleBtn');
+        const body = document.body;
+        displayToggleBtn.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            displayToggleBtn.textContent = body.classList.contains('dark-mode') ? 'Light' : 'Dark';
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            let supportClicked = false;
+            document.getElementById('supportBtn').addEventListener('click', function() {
+                if (!supportClicked) {
+                    alert('Thank you for supporting the project. If you want to contribute, Donate any amount to 91239205. Your support is appreciated!');
+                    supportClicked = true;
+                } else {
+                    window.location.href = 'https://www.paypal.com/myaccount/transfer/homepage';
+                }
+            });
+        });
+        document.getElementById("contactUsBtn").addEventListener("click", function() {
+            window.location.href = "https://mail.google.com/mail/u/0/#inbox?compose=CllgCJqXPtHNZqkHsQBvGnTjSGmfJlJppnkrRBgPqdwSzCbFqjPTcdVGLngBlVzmrMjWHWrvmxV";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevWebLoper</title>
+    <link rel="icon" href="logo.webp" type="image/webp">
+    <meta name="description" content="Custom website development tailored to your needs. We specialize in creating unique websites for businesses, shops, and online menus. Share your layout ideas, and we'll bring your vision to life. Professional, responsive, and designed to enhance your online presence.">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden; 
+        }
+        header {
+            display: flex;
+            align-items: left;
+            padding: 20px;
+        }
+        header img {
+            width: 50px; 
+            height: 50px;
+            border-radius: 50%; 
+            cursor: pointer;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 5%;
+            color: #212121;
+        }
+        p {
+            text-align: center;
+            margin-top: 3%;
+            color: #212121;
+            font-size: large;
+            padding-left: 25%;
+            padding-right: 25%;
+        }
+        h3 {
+            text-align: center;
+            padding-left: 30%;
+            padding-right: 30%;
+            padding-top: 3%;
+            padding-bottom: 2%;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+        .comic-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background-color: #ff8400;
+            border: 2px solid #000;
+            border-radius: 10px;
+            box-shadow: 5px 5px 0px #000;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .comic-button:hover {
+            background-color: #fff;
+            color: #ff5252;
+            border: 2px solid #ff5252;
+            box-shadow: 5px 5px 0px #ff5252;
+        }
+        .comic-button:active {
+            background-color: #ffc738;
+            box-shadow: none;
+            transform: translateY(4px);
+        }
+        .fixed-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px; 
+        }
+        .dialog {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            border: 3px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            width: 350px; 
+            height: auto; 
+            z-index: 1000;
+        }
+        .dialog h2 {
+            margin-top: 0;
+        }
+        .dialog h6 {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .dialog a {
+            color: #38538c;
+            text-decoration: none;
+        }
+        .dialog a:hover {
+            text-decoration: underline;
+        }
+        .dialog .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff5252; 
+            border: none;
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff; 
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            z-index: 1010; 
+        }
+        .dialog .close-btn:hover {
+            background-color: #312828; 
+            color: #ff5252;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.webp" alt="WebLoper Logo" onclick="location.href='mainindex.htm'">
+    </header>
+    <h1 id="title">Welcome to DevWebLoper</h1>
+    <p id="description">Stunning websites that captivate and build trust. Tailored designs for businesses, shops, online menus, web games.</p>
+    <h3 id="choose-device">Choose Your Device to continue:</h3>
+    <div class="controls">
+        <a href="Home Page for PC or Laptop.htm" class="comic-button" id="pc-button">PC/Laptop</a>
+        <a href="Home page for Mobile or Tablet.htm" class="comic-button" id="mobile-button">Mobile/Tablet</a>
+    </div>    
+    <div class="fixed-buttons">
+        <button class="comic-button" id="contact-button" onclick="toggleContact()">Contact</button>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="dialog" id="contact-dialog">
+        <button class="close-btn" onclick="toggleContact()">X</button>
+        <h2 id="contact-title">Contact Us</h2>
+        <h6 id="contact-email">Email: <a href="mailto:webloper.contact@gmail.com">webloper.contact@gmail.com</a></h6>
+        <h6 id="contact-phone">Phone number: +968 91239205</h6>
+        <h6 id="contact-instagram">Instagram: <a href="https://www.instagram.com/WebLoper.official_" target="_blank">@DevWebLoper.official_</a></h6>
+        <h6 id="contact-discord">Discord Community: <a href="https://discord.gg/fd5a2gmYYj" target="_blank">Join our Discord</a></h6>
+    </div>
+    <script>
+        function toggleContact() {
+            const dialog = document.getElementById('contact-dialog');
+            const overlay = document.getElementById('overlay');
+            const isVisible = dialog.style.display === 'block';
+            dialog.style.display = isVisible ? 'none' : 'block';
+            overlay.style.display = isVisible ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
